@@ -1,0 +1,52 @@
+{% extends 'admin_view.html' %}
+{% load static %}
+
+{% block content %}
+<div id="page-wrapper">
+
+<div><br><br></div>
+    <div class="container">
+        <h1>Donor Details</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Blood type</th>
+                    <th> Remove </th>
+
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for donor in donors %}
+                <tr>
+                    <td>{{ donor.user.first_name }}</td>
+                    <td>{{ donor.user.last_name }}</td>
+                    <td>{{ donor.user.email }}</td>
+
+                    <td>{{ donor.phone }}</td>
+                    <td>{{ donor.address }}</td>
+                    <td>{{ donor.city }}</td>
+                    <td>{{ donor.blood_type }}</td>
+                    <td>
+                    <a href="{% url 'delete_donor' donor.id %}" class="btn btn-primary">Delete</a>
+                    </td>
+
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No Donor found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

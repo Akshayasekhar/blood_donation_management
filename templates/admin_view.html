@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Admin Panel </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ <!-- Bootstrap Core CSS -->
+<link href="{% static 'admin_dashboard/css/bootstrap.min.css' %}" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="{% static 'admin_dashboard/css/style.css' %}" rel='stylesheet' type='text/css' />
+<!-- Graph CSS -->
+<link href="{% static 'admin_dashboard/css/lines.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'admin_dashboard/css/font-awesome.css' %}" rel="stylesheet"> 
+<!-- jQuery -->
+<script src="{% static 'admin_dashboard/js/jquery.min.js' %}"></script>
+<!----webfonts--->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+<!---//webfonts--->  
+<!-- Nav CSS -->
+<link href="{% static 'admin_dashboard/css/custom.css' %}" rel="stylesheet">
+<!-- Metis Menu Plugin JavaScript -->
+<script src="{% static 'admin_dashboard/js/metisMenu.min.js' %}"></script>
+<script src="{% static 'admin_dashboard/js/custom.js' %}"></script>
+<!-- Graph JavaScript -->
+<script src="{% static 'admin_dashboard/js/d3.v3.js' %}"></script>
+<script src="{% static 'admin_dashboard/js/rickshaw.js' %}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  body{
+  background: #ffffff;
+  }
+  .navbar-default.sidebar {
+    position: fixed;
+  }
+  
+  {% comment %} .navbar-static-top{
+    position: fixed;
+    width:1500px;
+  } {% endcomment %}
+  
+</style>
+</head>
+<body>
+<div id="wrapper">
+     <!-- Navigation -->
+        <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                {% comment %} <a class="navbar-brand" href="index.html">Blood Donation Management</a> {% endcomment %}
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-nav navbar-right">
+				
+			    <li class="dropdown">
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="data:image/jpeg;base64,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"></a>
+	        		<ul class="dropdown-menu">
+						<li class="dropdown-menu-header text-center">
+							<strong>Account</strong>
+						</li>
+						
+						
+						<li class="m_2"><a href="{% url 'logout' %}"><i class="fa fa-lock"></i> Logout</a></li>	
+	        		</ul>
+	      		</li>
+			</ul>
+            {% comment %} <form class="navbar-form navbar-right">
+              <input type="text" class="form-control" value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
+            </form> {% endcomment %}
+            <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                      <ul class="nav" id="side-menu">
+                        <br>
+                        <li>
+                            <a href="{% url 'admin_home' %}"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="{% url 'patient_details' %}"><i class="fas fa-user nav_icon"></i>Patient List</a>
+                            
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <br>
+                        <li>
+                            <a href="{% url 'donor_details' %}"><i class="fas fa-user-md nav_icon"></i>Donor List</a>
+                           
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <br>
+                        <li>
+                            <a href="{% url 'hospital_details' %}"><i class="fa fa-hospital-o nav_icon"></i>Hospital List</a>
+                            
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <br>
+                        <li>
+                            <a href="{% url 'hospital_registration' %}"><i class="fa fa-hospital-o nav_icon"></i>Register Hospital</a>
+                        </li>
+                        <br>
+                        <li>
+                          <a href="{% url 'requested_hospital' %}"><i class="fa fa-hospital-o nav_icon"></i>Requested Hospital</a>
+                      </li>
+                        <br><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br><br><br>
+                      </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+              </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+          </div>
+          <script src="{% static 'admin_dashboard/js/bootstrap.min.js' %}"></script>
+
+            {% block content %}
+
+
+{% endblock %}
+
+
+</body>
+</html>
+            {% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+    <style>
+    body {
+    background-color: #e0e0e0;
+    }
+</style>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Blood Donation Management System</h1>
+      </a>
+
+
+
+      <a class="btn-book-a-table" href="{% url 'logout' %}">Logout</a>
+
+
+    </div>
+
+  </header><!-- End Header -->
+  {% endcomment %}
+{% comment %} {% block content %}
+{% endblock %}
+</body>
+</html> {% endcomment %}

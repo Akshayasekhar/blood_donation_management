@@ -1,0 +1,98 @@
+{% extends 'patient_base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <style>
+        .hero {
+            background-image: url('https://images.pexels.com/photos/6823567/pexels-photo-6823567.jpeg?cs=srgb&dl=pexels-artem-podrez-6823567.jpg&fm=jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            height: 450px;
+        }
+        .profile-container {
+            margin-top: 120px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .quote-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            color: white;
+        }
+        .card {
+            flex: 0 0 calc(40% - 20px); /* Adjust the card width and spacing */
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: rgba(0,0,0,.075);
+            margin-bottom: 20px; /* Add some space between cards */
+        }
+        .custom-button {
+            background-color: #ce1212;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%; /* Make the button width 100% of the card width */
+            border-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex: 0 0 calc(100% - 20px); /* Full width for cards on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="hero">
+            <br><br><br><br>
+            <div class="quote-container">
+            <div class="quote">
+                "Donating blood is an act of kindness that costs nothing but saves lives."
+            </div>
+        </div>
+        <br><br><br>    <br><br>
+            <br><br>
+            <div class="container">
+                <div class="card-container">
+                    <div class="card">
+                        <h2>Blood Request Form</h2>
+                        <p>Fill out the form to request blood.</p>
+                        <br>
+                        <a href="{% url 'blood_request_form' %}" class="custom-button">Request Blood</a>
+                    </div>
+                    <div class="card">
+                        <h2>Blood Request History</h2>
+                        <p>View your blood request history here.</p>
+                        <br>
+                        <a href="{% url 'blood_request_history' %}" class="custom-button">View History</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br>
+</body>
+</html>
+{% endblock %}

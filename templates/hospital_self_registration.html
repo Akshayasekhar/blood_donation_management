@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <style>
+       
+
+        .registration-form {
+            background-color: #f5f5f5; /* Add a semi-transparent white background to the form */
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+             /* Adjust the top margin to control the distance from the top of the page */
+        }
+
+        .registration-form h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-top: 10px;
+            
+        }
+
+        .btn-register {
+            background-color: #ce1212; /* Set your desired button background color */
+            color: #fff;
+        }
+        .error-message {
+            color: #ce1212; /* Set the error message color to red or your desired color */
+            font-size: 16px; /* Set the font size as needed */
+            text-align: center; /* Center the error message */
+            margin-top: 10px; /* Add some top margin to separate it from the form fields */
+        }
+        select {
+            word-wrap: normal;
+            width: 550px;
+            height: 35px;
+            border-color: #ced4da;
+        }
+    </style>
+
+
+    <div id="page-wrapper">
+<br><br><br><br>
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <center>
+                <div class="registration-form">
+                    
+                    <h2 class="text-center">Hospital Registration</h2>
+                    <form method="POST" onsubmit="return validateForm()" enctype="multipart/form-data">
+                             {% csrf_token %}
+
+                            <input type="hidden" name="usertype" value="hospital">
+
+                        <div class="form-group">
+                            <label for="Name">Hospital Name</label>
+                            <input type="text" class="form-control" id="Name" name="name" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Image">Image</label>
+                            <input type="file" class="form-control" id="image" name="image">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email"  name="email" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Contact Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">+91</span>
+                                </div>
+                                <input type="number" class="form-control" id="phone" name="phone" placeholder="" required pattern="[0-9]{10,12}" title="Please enter a valid phone number (10-12 digits)">
+                            </div>       
+                            {% comment %} <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter contact  number" required> {% endcomment %}
+                            <p id="phone-error" class="error-message"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control"  name="address" id="address" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <br>
+                            {% comment %} <input type="text" class="form-control" id="city" name="city" placeholder="" required> {% endcomment %}
+                                                        {{ city_filter_form.city }} 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username"  name="username" placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-group-append">
+
+                            <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+                            <span class="input-group-text">
+                                <i class="fas fa-eye" id="toggle-password"></i>
+                            </span>
+                        </div>
+                        <p id="password-error" class="error-message"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="" required>
+                        </div>
+                        
+                        {% if error_message %}
+                           <p class="error-message">{{ error_message }}</p>
+                        {% endif %}
+                        <button type="submit" class="btn btn-register btn-block">Register</button>
+                    </form>
+                
+                    
+                </div>
+            </center>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</div>
+<script>
+    const phone = document.getElementById('phone');
+    const phoneError = document.getElementById('phone-error');
+    const confirm_password = document.getElementById('confirm_password');
+
+    phone.addEventListener('input', () => {
+        const value = phone.value.trim();
+        if (!/^[0-9]{10,12}$/.test(value)) {
+            phone.setCustomValidity(''); 
+            phone.setCustomValidity('Please enter a valid phone number (10-12 digits)');
+            phoneError.textContent = 'Please enter a valid phone number (10-12 digits)';
+        } else {
+            phone.setCustomValidity('');
+            phoneError.textContent = '';
+        }
+    });
+    
+    
+const password = document.getElementById('password');
+const passwordError = document.getElementById('password-error');
+
+password.addEventListener('input', () => {
+    const value = password.value.trim();
+    const hasMinimumLength = value.length >= 8;
+    const hasUppercase = /[A-Z]/.test(value);
+    const hasLowercase = /[a-z]/.test(value);
+    const hasNumber = /[0-9]/.test(value);
+    const hasSpecialCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(value);
+
+    if (!hasMinimumLength) {
+        password.setCustomValidity('');
+        password.setCustomValidity('Password must have At least 8 characters');
+        passwordError.textContent = 'Password must have At least 8 characters';
+    }
+    else if (!hasUppercase) {
+        password.setCustomValidity('');
+        password.setCustomValidity('Password must have upper case characters');
+        passwordError.textContent = 'Password must have upper case characters';
+    }
+    else if (!hasLowercase) {
+        password.setCustomValidity('');
+        password.setCustomValidity('Password must have lower case characters');
+        passwordError.textContent = 'Password must have lower case characters';
+    }
+    else if (!hasNumber) {
+        password.setCustomValidity('');
+        password.setCustomValidity('Password must have number');
+        passwordError.textContent = 'Password must have number';
+    }
+    else if (!hasSpecialCharacter) {
+        password.setCustomValidity('');
+        password.setCustomValidity('Password must have Special Character');
+        passwordError.textContent = 'Password must have Special Character';
+    }
+    else {
+        password.setCustomValidity('');
+        passwordError.textContent = '';
+    }
+});
+
+function validateForm() {
+    let isValid = true;
+
+    if (password.value !== confirm_password.value) {
+        passwordError.textContent = 'Password does not match.';
+        isValid = false;
+    } else {
+        passwordError.textContent = '';
+    }
+
+    return isValid;
+}
+document.getElementById('toggle-password').addEventListener('click', function () {
+    var passwordInput = document.getElementById('password');
+    var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+});
+document.getElementById('toggle-password').addEventListener('click', function () {
+    var passwordInput = document.getElementById('confirm_password');
+    var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+});
+</script>
+
+{% endblock %}

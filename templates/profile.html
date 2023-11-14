@@ -1,0 +1,62 @@
+{% extends 'admin_view.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+<style>
+.profile-info {
+    font-size: 18px;
+    color: #333;
+    margin: 5px;
+    /* Add more custom styles as needed */
+}
+.profile-container {
+            margin-top: 50px;
+            background-color: #fff; /* White background */
+            border: 1px solid #ccc; /* Add a border for styling */
+            border-radius: 10px; /* Add rounded corners */
+            padding: 30px; /* Add padding to the box */
+            max-width: 600px; /* Set a maximum width for the box */
+        }
+    .profile-buttons {
+    font-size: 14px;
+    color: #fff;
+    background: #ce1212;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+</style>
+
+
+</head>
+<body>
+    
+    <div id="page-wrapper">
+
+<div class="content">
+   <center> <div class="profile-container">
+    <h1>Patient Profile</h1>
+    <p><strong>First Name:</strong> <span class="profile-info">{{ user_data.first_name }}</span></p><br>
+    <p><strong>Last Name:</strong> <span class="profile-info">{{ user_data.last_name }}</span></p><br>
+    <p><strong>Email:</strong> <span class="profile-info">{{ user_data.email }}</span></p><br>
+    <p><strong>Phone:</strong> <span class="profile-info">{{ custom_registration_data.phone }}</span></p><br>
+    <p><strong>Address:</strong> <span class="profile-info">{{ custom_registration_data.address }}</span></p><br>
+    <p><strong>City:</strong> <span class="profile-info">{{ custom_registration_data.city }}</span></p><br>
+    <p><strong>Blood Type:</strong> <span class="profile-info">{{ custom_registration_data.blood_type }}</span></p>
+<div><br>
+   
+   </div>
+   </div>
+   </center>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+</div>
+</body>
+</html>
+
+{% endblock %}

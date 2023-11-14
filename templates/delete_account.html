@@ -1,0 +1,55 @@
+{% extends 'donor_base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Account</title>
+    <style>
+        .profile-container {
+            margin-top: 120px;
+            background-color: #fff; /* White background */
+            border: 1px solid #ccc; /* Add a border for styling */
+            border-radius: 10px; /* Add rounded corners */
+            padding: 30px; /* Add padding to the box */
+            max-width: 600px; /* Set a maximum width for the box */
+        }
+    /* Add your CSS styles */
+.custom-button {
+    background-color: #ce1212; /* Change the background color to your preferred color */
+    color: #fff; /* Change the text color to white or your preferred color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px; /* Add rounded corners */
+}
+
+.custom-button:hover {
+    background-color: #FF3313; /* Change the background color on hover */
+}
+
+    </style>
+</head>
+
+
+<body><center>
+    <div class="profile-container">
+        <h1>Delete Account</h1>
+        <p>Do you really want to delete your Donor account? This action cannot be undone. All your data will be permanently deleted.</p>
+        <form method="post" action="{% url 'delete_account' %}">
+    {% csrf_token %}
+    <div>
+        <button type="submit" class="profile-buttons custom-button" name="confirm_delete">Delete Account</button>
+    </div>
+</form>
+
+    </div>
+
+
+
+    </center>
+<br><br><br><br><br>
+</body>
+</html>
+
+{% endblock %}

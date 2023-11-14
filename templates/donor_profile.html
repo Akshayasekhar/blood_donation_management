@@ -1,0 +1,156 @@
+{% extends 'donor_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- user_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+<style>
+.profile-info {
+    font-size: 18px;
+    color: #333;
+    margin: 5px;
+}
+.profile-container {
+           margin-left:300px;
+            margin-top: 120px;
+            background-color: #fff; /* White background */
+            border: 1px solid #ccc; /* Add a border for styling */
+            border-radius: 10px; /* Add rounded corners */
+            padding: 30px; /* Add padding to the box */
+            width: 800px; /* Set a maximum width for the box */
+        }
+   .profile-buttons:focus {
+    font-size: 14px;
+    color: #fff;
+    background: #ce1212;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px;
+    width: 150px;
+    height: 150px;
+  }
+  .success-message {
+    color: #228B22; /* Green color for success messages */
+    font-weight: bold;
+    /* Add more custom styles as needed */
+}
+.content {
+    display: flex;
+    {% comment %} justify-content: space-between; {% endcomment %}
+    align-items: center;
+}
+ .hospital-list { 
+    /* Your existing styles for the hospital list link */
+    font-size: 20px;
+    color:#ce1212;;
+    {% comment %} background: #ce1212; {% endcomment %}
+    padding: 8px 20px;
+    margin-left: 30px;
+    {% comment %} border-radius: 50px; {% endcomment %}
+    transition: 0.3s;
+    position: relative; /* Relative positioning for the arrow */
+}
+
+{% comment %} .hospital-list::after {
+    /* Styles for the arrow */
+    content: ''; /* Required content property for ::after */
+    display: inline-block;
+    margin-left: 5px; /* Adjust the margin as needed */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 8px; /* Adjust the size of the arrow */
+    border-color: transparent transparent transparent #fff; /* Arrow color */
+} {% endcomment %}
+</style>
+
+
+</head>
+<body>
+<div class="content">
+   <center> <div class="profile-container">
+    {% if messages %}
+    <ul class="success-message">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <p>Total Number of Donations: {{ total_donations }}</p>
+
+    <h1>Donor Profile</h1>
+    {% if custom_registration_data.image %}
+    <img src="{{ custom_registration_data.image.url }}" alt="{{ user_data.first_name }}">
+   {% endif %}
+    <p><strong>First Name:</strong> <span class="profile-info">{{ user_data.first_name }}</span></p>
+    <p><strong>Last Name:</strong> <span class="profile-info">{{ user_data.last_name }}</span></p>
+    <p><strong>Email:</strong> <span class="profile-info">{{ user_data.email }}</span></p>
+    <p><strong>Phone:</strong> <span class="profile-info">{{ custom_registration_data.phone }}</span></p>
+    <p><strong>Address:</strong> <span class="profile-info">{{ custom_registration_data.address }}</span></p>
+    <p><strong>City:</strong> <span class="profile-info">{{ custom_registration_data.city }}</span></p>
+    <p><strong>Blood Type:</strong> <span class="profile-info">{{ custom_registration_data.blood_type }}</span></p>
+    <div>
+    <a href="{% url 'edit_donor' donor_id=user.id %}" class="profile-buttons">Edit Account</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'delete_account' %}" class="profile-buttons">Delete Account</a>
+
+     </div>
+  
+   </div>
+   
+   </center>
+   <div>&nbsp;&nbsp;
+    click to see blood unit needed for each hospital
+   <a href="{% url 'hospital_blood_profile' %}" class="hospital-list">hospital list
+    <div class="arrow"></div>
+   </a>
+</div>
+</div>
+<div><br><br><br><br></div>
+<hr>
+<div class="container">
+    <h1>Blood Donation History</h1>
+    <p>Total Donations: {{ total_donations }}</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Donation Date</th>
+                <th>Units Donated</th>
+                <th>Hospital Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for blood_donation in blood_donations %}
+            {% if blood_donation.confirm %}
+            <tr>
+                <td>{{ blood_donation.donation_date }}</td>
+                <td>{{ blood_donation.units_donated }}</td>
+                <td>{{ blood_donation.hospital.first_name }}</td>
+                
+                
+
+            </tr>
+            {% endif %}
+            {% empty %}
+            <tr>
+                <td colspan="6">No blood Donations found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+{% endblock %}

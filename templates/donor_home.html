@@ -1,0 +1,82 @@
+{% extends 'donor_base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .hero {
+            position: relative;
+            background-image: url('https://images.pexels.com/photos/6823567/pexels-photo-6823567.jpeg?cs=srgb&dl=pexels-artem-podrez-6823567.jpg&fm=jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            height: 100vh;
+            text-align: center;
+            color: white;
+        }
+        .hero h2 {
+               color:white;
+        }
+        .quotes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100%;
+            padding: 220px;
+            background: rgb(0 0 0 / 14%); /* Semi-transparent black background for quotes */
+        }
+
+        .profile-container {
+            margin-top: 30px;
+            position: absolute;
+            top: 100px;
+            right: 30px;
+            bottom: 50px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 300px;
+        }
+        @media (max-width: 768px) {
+            .quotes {
+                padding: 20px; /* Reduce padding for smaller screens */
+            }
+            .profile-container {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="hero">
+    <div class="quotes">
+        <h2>Donate Blood, Save Lives</h2>
+        <p>"The blood you donate gives someone another chance at life."</p>
+        <p>"To give blood, you need neither extra strength nor extra food, and you will save a life."</p>
+        <!-- Add more quotes here -->
+    </div>
+    <div>
+    <br><br><br><br></div>
+    <div class="profile-container card">
+        <h3>Your Blood Donation History</h3>
+        <p>Total Number of Donations: {{ total_donations }}</p>
+        <a href={% url 'blood_donation_history' %}>View Full History</a>
+        <ul class="list-group">
+            {% for donation in donation_history %}
+                <li class="list-group-item">
+                    {{ donation.date }} - {{ donation.amount }} ml
+                </li>
+            {% endfor %}
+        </ul>
+        <br><br>
+        <img src=https://img.freepik.com/free-vector/x9beautiful-hands-saving-blood-drop-card-design_1035-23347.jpg>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

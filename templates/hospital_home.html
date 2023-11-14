@@ -1,0 +1,105 @@
+{% extends 'hospital_view.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Your custom CSS styles go here */
+    .container {
+        padding: 20px;
+    }
+
+    .custom-button {
+        background-color: #ce1212;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .card {
+        border: none;
+        background-color: rgba(0, 0, 0, 0.125);
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .dashboard-stats {
+        margin-top: 60px;
+    }
+
+    /* Responsive font size */
+    @media (max-width: 768px) {
+        .custom-button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+
+        .card-title {
+            font-size: 18px;
+        }
+
+        .card-text {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<div class="container">
+    <br><br>
+    <div class="row dashboard-stats">
+        <div class="col-lg-6 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Total Blood Requests from patients</h4>
+                    <p>{{ blood_request }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Approved Blood Requests</h4>
+                    <p>{{ request_approval }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Total Blood Donation Request from Donor</h4>
+                    <p>{{ donation_request }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Total Blood Unit Wanted</h4>
+                    <p>{{ blood_unit.total_units }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Total Blood Donations</h2>
+                    <p class="card-text">{{ donation_count }}</p>
+                    <a href="{% url 'blood_donation_view' %}" class="custom-button">Show Donations</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

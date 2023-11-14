@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+  
+    
+
+    <style>
+          {% comment %} body {
+            background-image: url('https://images.pexels.com/photos/6823567/pexels-photo-6823567.jpeg?cs=srgb&dl=pexels-artem-podrez-6823567.jpg&fm=jpg'); /* Set your background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: #e0e0e0;
+
+        } {% endcomment %} 
+        #navbar ul li a{
+          text-decoration: none; 
+        }
+        a {
+          text-decoration: none; 
+        }
+        .logo {
+          margin-right: 700px;
+          align:left;
+      }
+      .navbar {
+        margin-left: 900px;
+    }
+    </style>
+</head>
+<body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="{% url 'index' %}" class="logo d-flex align-items-center">
+        <img src="data:image/jpeg;base64,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" style="width: 50px; height: 50px;">
+      </a>
+
+      <nav id="navbar" class="navbar ml-auto">
+        <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'registration' %}">Registration</a></li>
+
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li>              <a class="btn-book-a-table" href="{% url 'login' %}">Login</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+
+
+
+    </div>
+  </header><!-- End Header -->
+{% block content %}
+{% endblock %}
+<footer id="footer" class="footer">
+  <div class="container">
+    <div class="">
+      <i class="bi bi-gear icon"></i>
+      <div>
+          <h4>About Us</h4>
+          <p>
+              <strong>The Blood Donation Management System</strong> is a web-based platform dedicated to saving lives through efficient blood donation coordination. Our mission is to connect blood donors, patients, and hospitals, making it easy to find and donate blood when it's needed the most. At Blood Donation Management System, we believe in the power of community and the difference every individual can make. Join us in our mission to make blood donation accessible, convenient, and life-saving for all.
+          </p>
+      </div>
+  </div>
+      <div class="row">
+          {% comment %} <div class="col-lg-4 col-md-6">
+              <i class="bi bi-gear icon"></i>
+              <div>
+                  <h4>About Us</h4>
+                  <p>
+                      <strong>The Blood Donation Management System</strong> is a web-based platform dedicated to saving lives through efficient blood donation coordination. Our mission is to connect blood donors, patients, and hospitals, making it easy to find and donate blood when it's needed the most. At Blood Donation Management System, we believe in the power of community and the difference every individual can make. Join us in our mission to make blood donation accessible, convenient, and life-saving for all.
+                  </p>
+              </div>
+          </div> {% endcomment %}
+          <div class="col-lg-4 col-md-6">
+              <i class="bi bi-envelope icon"></i>
+              <div>
+                  <h4>Contact Us</h4>
+                  <p>
+                      <strong>Email:</strong> akshayasekharan@gmail.com<br>
+                      <strong>Phone:</strong> 773-620-6493
+                  </p>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+              <i class="bi bi-info-circle icon"></i>
+              <div>
+                  <h4>Disclaimer</h4>
+                  <p>
+                      <strong>Disclaimer:</strong> Blood Donation Management System is not a medical institution but a platform that connects donors and patients. Please consult a healthcare professional for any medical concerns.
+                  </p>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+              <i class="bi bi-link-45deg icon"></i>
+              <div>
+                  <h4>Quick Access</h4>
+                  <p>
+                      <a href="{% url 'index' %}">Home</a><br>
+                      <a href="{% url 'donor_registration' %}">Donor Registration</a><br>
+                      <a href="{% url 'patient_registration' %}">Patient Registration</a><br>
+                      <a href="">Hospital Registration</a>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="container">
+      <div class="copyright">
+          &copy; Copyright <strong>Blood Donation Management</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with a working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+      </div>
+  </div>
+</footer>
+</body>
+</html>

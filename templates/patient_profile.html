@@ -1,0 +1,152 @@
+{% extends 'patient_base.html' %}
+{% block content %}
+<!-- user_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+<style>
+    .success-message {
+        color: #228B22; /* Green color for success messages */
+        font-weight: bold;
+        /* Add more custom styles as needed */
+    }
+    table {
+        background-color: #ffffff
+    }
+.profile-info {
+    font-size: 18px;
+    color: #333;
+    margin: 5px;
+    /* Add more custom styles as needed */
+}
+.profile-container {
+            margin-top: 50px;
+            background-color: #fff; /* White background */
+            border: 1px solid #ccc; /* Add a border for styling */
+            border-radius: 10px; /* Add rounded corners */
+            padding: 30px; /* Add padding to the box */
+            width: 700px; /* Set a maximum width for the box */
+        }
+    .profile-buttons {
+    font-size: 14px;
+    color: #fff;
+    background: #ce1212;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px;
+    width: 150px;
+    height: 150px;
+  }
+  .blood-form-container {
+    margin-top: 70px;
+    max-width: 300px; /* Adjust as needed */
+    margin-left: 40px; /* Adjust as needed */
+}
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+</style>
+
+
+</head>
+<body>
+<div class="content">
+   <center>
+    {% if messages %}
+    <ul class="success-message">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+ <div class="profile-container">
+    <h1>Patient Profile</h1>
+    {% if custom_registration_data.image %}
+    <img src="{{ custom_registration_data.image.url }}" alt="{{ user_data.first_name }}">
+   {% endif %}
+    <p><strong>First Name:</strong> <span class="profile-info">{{ user_data.first_name }}</span></p><br>
+    <p><strong>Last Name:</strong> <span class="profile-info">{{ user_data.last_name }}</span></p><br>
+    <p><strong>Email:</strong> <span class="profile-info">{{ user_data.email }}</span></p><br>
+    <p><strong>Phone:</strong> <span class="profile-info">{{ custom_registration_data.phone }}</span></p><br>
+    <p><strong>Address:</strong> <span class="profile-info">{{ custom_registration_data.address }}</span></p><br>
+    <p><strong>City:</strong> <span class="profile-info">{{ custom_registration_data.city }}</span></p><br>
+    <p><strong>Blood Type:</strong> <span class="profile-info">{{ custom_registration_data.blood_type }}</span></p>
+   <div><br>
+    <a href="{% url 'edit_patient' patient_id=user.id %}" class="profile-buttons">Edit Account</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'delete_account_patient' %}" class="profile-buttons">Delete Account</a>
+
+   </div>
+   </div>
+   </center>
+   <div class="blood-form-container">
+    <div class="card">
+        <h2>Blood Request Form</h2>
+        <p>Fill out the form to request blood.</p>
+        <br>
+        <a href="{% url 'blood_request_form' %}" class="custom-button">Request Blood</a>
+    </div>
+</div>
+</div>
+{% comment %} <div class="card">
+    <h2>Blood Request Form</h2>
+    <p>Fill out the form to request blood.</p>
+    <br>
+    <a href="{% url 'blood_request_form' %}" class="custom-button">Request Blood</a>
+</div>  {% endcomment %}
+<br><br>
+<hr>
+<div class="container">
+    <h1>Blood Request History</h1>
+
+    <p>Total request: {{ total_requests }}</p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Request Date</th>
+                    <th>Units</th>
+                    <th>Hospital Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for blood_request in blood_requests %}
+                <tr>
+                    <td>{{ blood_request.request_date }}</td>
+                    <td>{{ blood_request.units_needed }}</td>
+                    <td>{{ blood_request.hospital.first_name }}</td>
+                    <td>
+                        {% if blood_request.is_fulfilled == 1 %}
+                            Approved
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No blood request found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+</div>
+</body>
+</html>
+
+{% endblock %}

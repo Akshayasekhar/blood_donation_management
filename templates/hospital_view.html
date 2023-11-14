@@ -1,0 +1,228 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hospital</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0e0e0;
+        }
+        .header .logo img {
+            max-height: 35px;
+            max-width: 35px;
+            margin-left: 0;
+
+            margin-right: 6px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        /* Style for the dropdown container */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Style for the dropdown content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Style for dropdown items */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown items on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown content when the dropdown image is clicked */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Style for the image in the navbar */
+        .nav-image {
+            cursor: pointer;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            padding-top: 20px;
+            padding-right: 10px;
+        }
+
+        .sidebar a {
+            padding: 10px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .profile-image {
+            border-radius: 50%; /* Makes the image a circle */
+            width: 50px; /* You can adjust the width and height as needed */
+            height: 50px;
+          }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="...">
+
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <a href="{% url 'hospital' %}" class="logo d-flex align-items-center  me-auto me-lg-0">
+            {% comment %} <i class="fas fa-tint"></i> {% endcomment %}
+            <img src="https://img.freepik.com/free-vector/x9beautiful-hands-saving-blood-drop-card-design_1035-23347.jpg" alt="Blood Donation Logo">
+            <h1>{{ user_data.first_name }}</h1>
+        </a>
+
+        <!-- Dropdown container with the image on the right -->
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                {% if custom_registration_data.image %}
+    <img src="{{ custom_registration_data.image.url }}"  class="profile-image" alt="{{ user_data.first_name }}">
+   {% else %}<img src="data:image/jpeg;base64,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" class="profile-image" >
+   {% endif %}
+  </a>
+            {% comment %} <img src="data:image/jpeg;base64,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" alt="Profile" style="width:60px; height:60px;" class="nav-image"> {% endcomment %}
+        <div class="dropdown-content">
+            <a href="{% url 'hospital' %}">Profile</a>
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'hospital_password_change' %}">Change password</a>
+
+        </div>
+    </div>
+</header>
+<div class="sidebar">
+  <br><br><br><br><br>
+    <a href="{% url 'hospital_home' %}">Dashboard</a>
+    <a href="{% url 'blood_request_view' %}">Blood Request</a>
+    <a href="{% url 'blood_donation_view' %}">Blood Donations</a>
+    <a href="{% url 'blood_view' %}">Blood Info</a>
+
+</div>
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+    {% comment %} <footer id="footer" class="footer">
+        <div class="container">
+          <div class="">
+            <i class="bi bi-gear icon"></i>
+            <div>
+                <h4>About Us</h4>
+                <p>
+                    <strong>The Blood Donation Management System</strong> is a web-based platform dedicated to saving lives through efficient blood donation coordination. Our mission is to connect blood donors, patients, and hospitals, making it easy to find and donate blood when it's needed the most. At Blood Donation Management System, we believe in the power of community and the difference every individual can make. Join us in our mission to make blood donation accessible, convenient, and life-saving for all.
+                </p>
+            </div>
+        </div>
+            <div class="row">
+                {% comment %} <div class="col-lg-4 col-md-6">
+                    <i class="bi bi-gear icon"></i>
+                    <div>
+                        <h4>About Us</h4>
+                        <p>
+                            <strong>The Blood Donation Management System</strong> is a web-based platform dedicated to saving lives through efficient blood donation coordination. Our mission is to connect blood donors, patients, and hospitals, making it easy to find and donate blood when it's needed the most. At Blood Donation Management System, we believe in the power of community and the difference every individual can make. Join us in our mission to make blood donation accessible, convenient, and life-saving for all.
+                        </p>
+                    </div>
+                </div> {% endcomment %}
+                {% comment %} <div class="col-lg-4 col-md-6">
+                    <i class="bi bi-envelope icon"></i>
+                    <div>
+                        <h4>Contact Us</h4>
+                        <p>
+                            <strong>Email:</strong> akshayasekharan@gmail.com<br>
+                            <strong>Phone:</strong> 773-620-6493
+                        </p>
+                    </div>
+                </div> {% endcomment %}
+                {% comment %} <div class="col-lg-4 col-md-6">
+                    <i class="bi bi-info-circle icon"></i>
+                    <div>
+                        <h4>Disclaimer</h4>
+                        <p>
+                            <strong>Disclaimer:</strong> Blood Donation Management System is not a medical institution but a platform that connects donors and patients. Please consult a healthcare professional for any medical concerns.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <i class="bi bi-link-45deg icon"></i>
+                    <div>
+                        <h4>Quick Access</h4>
+                        <p>
+                            <a href="#">Home</a><br>
+                            <a href="#">Donor Registration</a><br>
+                            <a href="#">Patient Registration</a><br>
+                            <a href="#">Hospital Registration</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+      
+        {% comment %} <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Blood Donation Management</strong>. All Rights Reserved
+            </div>
+            <div class="credits"> {% endcomment %}
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with a working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+            {% comment %} </div>
+        </div>
+      </footer>  {% endcomment %}
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% extends 'hospital_view.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+.profile-info {
+    font-size: 18px;
+    color: #333;
+    margin: 5px;
+}
+.profile-container {
+            margin-top: 80px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+        }
+.profile-buttons {
+    font-size: 14px;
+    color: #fff;
+    background: #ce1212;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+ .success-message {
+    color: #228B22; /* Green color for success messages */
+    font-weight: bold;
+    /* Add more custom styles as needed */
+}
+
+  img {
+    border: 4px solid #ddd;
+    border-radius: 50%;
+    padding: 2px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+</style>
+
+
+<body>
+<div class="">
+    <br><br><br><br>
+    <center>
+    {% if messages %}
+    <ul class="success-message">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</center>
+   <center> <div class="profile-container">
+    {% if custom_registration_data.image %}
+    <img src="{{ custom_registration_data.image.url }}" alt="{{ user_data.first_name }}">
+   {% endif %}
+    <h1><strong> <span class="profile-info">{{ user_data.first_name }}</span></strong></h1>
+    <p><strong>Email:</strong> <span class="profile-info">{{ user_data.email }}</span></p>
+    <p><strong>Contact number:</strong> <span class="profile-info">{{ custom_registration_data.phone }}</span></p>
+    <p><strong>Address:</strong> <span class="profile-info">{{ custom_registration_data.address }}</span></p>
+    <p><strong>City:</strong> <span class="profile-info">{{ city_name }}</span></p>
+<div>
+    <a href="{% url 'edit_hospital' hospital_id=user.id %}" class="profile-buttons">Edit Details</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--    <a href="{% url 'delete_account_patient' %}" class="profile-buttons">Delete Account</a>-->
+
+   </div>
+   </div>
+   </center>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'admin_view.html' %}
+{% block content %}
+<div id="page-wrapper">
+<br><br><br><br>
+    <h2>Requested Hospitals</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Description</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for hospital in hospitals %}
+                <tr>
+                    <td>{{ hospital.phone }}</td>
+                    <td>{{ hospital.email }}</td>
+                    <td>{{ hospital.description }}</td>
+                    <td>
+                        <a href="{% url 'approve_hospital' hospital.id %}" class="btn btn-success">Approve</a>
+                        <a href="{% url 'reject_hospital' hospital.id %}" class="btn btn-danger">Reject</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No requested hospitals found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

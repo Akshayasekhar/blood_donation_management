@@ -1,0 +1,95 @@
+{% extends 'donor_base.html' %}
+
+{% block content %}
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+
+<style>
+    .custom-button {
+        background-color: #ce1212; /* Change the background color to your preferred color */
+        color: #fff; /* Change the text color to white or your preferred color */
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+<div><br><br><br><br></div>
+<div class="container">
+    <div class="text-center mb-4">
+        <p>Find the nearest hospital for blood donation.</p>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center mb-4">
+        <form class="form-inline" method="post">
+            {% csrf_token %}
+
+            {% comment %} <div class="input-group"> {% endcomment %}
+                {% comment %} <input type="text" class="form-control" name="kilometer" placeholder="Enter kilometer " />
+               
+                <input type="hidden" id="userAddress" value="{{ donor_latitude }}" name="latitude"  />
+                <input type="hidden" id="userAddress" value="{{ donor_longitude }}" name="longitude" /> {% endcomment %}
+                <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="hospital_id">Select City:</label>
+                    <select name="city" id="city" class="form-control" required>
+                      {% for city_data in cities %}
+
+                        <option value="{{ city_data.id }}">{{ city_data.name }} </option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <button class="custom-button" type="submit">Search</button>
+                </div>
+                </form>
+            {% comment %} </div> {% endcomment %}
+        </form>
+    </div>
+    {% for hospital, blood_units in grouped_data.items %}
+    <h2>{{ hospital.first_name }}</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Blood Type</th>
+                <th>Total Blood Units needed</th>
+                <th>Donate</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for blood_unit in blood_units %}
+                <tr>
+                    <td>{{ blood_unit.blood_type }}</td>
+                    <td>{{ blood_unit.units }}</td>                    
+
+                    <td>     
+                        {% if donor_blood_type == blood_unit.blood_type %}
+
+                        {% if eligible == True %}
+                        <a href="{% url 'donate_blood_form' hospital_id=hospital.id %}">
+                        <button type="submit" class="custom-button">Donate</button>
+                        </a>
+                        {% else %}
+                        <button type="button" class="custom-button" disabled>Donated</button>
+
+                        {% endif %}
+
+                        {% endif %} 
+                        
+
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No blood units available for this hospital.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+<br><br><br><br><br><br><br>
+</div>
+
+
+{% endblock %}

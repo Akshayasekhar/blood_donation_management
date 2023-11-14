@@ -1,0 +1,41 @@
+{% extends 'donor_base.html' %}
+
+{% block content %}
+
+<div><br><br><br><br></div>
+<div class="container">
+    <h1>Blood Donation History</h1>
+    <p>Total Donations: {{ total_donations }}</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Donation Date</th>
+                <th>Units Donated</th>
+                <th>Hospital Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for blood_donation in blood_donations %}
+            {% if blood_donation.confirm %}
+            <tr>
+                <td>{{ blood_donation.donation_date }}</td>
+                <td>{{ blood_donation.units_donated }}</td>
+                <td>{{ blood_donation.hospital.first_name }}</td>
+                
+                
+
+            </tr>
+            {% endif %}
+            {% empty %}
+            <tr>
+                <td colspan="6">No blood Donations found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,1233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>blood donation management system</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  {% comment %} <link href="{% static 'assets/img/favicon.png' %}" rel="icon"> {% endcomment %}
+  <link href="data:image/jpeg;base64,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" style="width: 50px; height: 50px;" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+  <style>
+    .hero h2 {
+      font-size: 36px; /* Adjust the font size as needed */
+      font-weight: bold;
+      color: #ff0000; /* Set the text color to your desired color */
+      text-transform: uppercase;
+      margin-bottom: 10px;
+  }
+  .hero p {
+    font-size: 24px; /* Adjust the font size as needed */
+    color: #000; /* Set the text color to your desired color */
+}
+.bgimg {
+    background-image: url('https://images.pexels.com/photos/6823567/pexels-photo-6823567.jpeg?cs=srgb&dl=pexels-artem-podrez-6823567.jpg&fm=jpg');
+     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 600px; /* Set the desired height value, for example, 600px */
+    padding: 50px; /* Adjust the padding as needed */
+    }
+    /* CSS for the Hospital Registration Pop-up */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        position: relative;
+    }
+    
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    form label {
+        display: block;
+        margin-top: 10px;
+    }
+    
+    form input, form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    form button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    
+    form button:hover {
+        background-color: #0056b3;
+    }
+    
+  </style>
+  <!-- =======================================================
+  * Template Name: Yummy
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <img src="data:image/jpeg;base64,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" style="width: 50px; height: 50px;">
+      </a>
+
+      <nav id="navbar" class="navbar ml-auto">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#registration">Registration</a></li> 
+
+           <li><a href="#contact">Contact</a></li>
+           <li>        <a class="btn-book-a-table" href="login">Login</a></li>
+
+        </ul>
+
+      </nav><!-- .navbar -->
+
+<!--      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>-->
+<!--      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>-->
+
+    </div>
+  </header><!-- End Header --> 
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center section-bg bgimg">
+    <div class="container">
+        <div class="row justify-content-between gy-5">
+            <div class="col-lg-5 order-2 order-lg-1 text-center text-lg-start">
+              <h2 data-aos="fade-up">Blood Donation Management</h2>
+
+              <p data-aos="fade-up">Donate Blood, Save Lives</p>
+                
+                <!-- You can add any other content you want here. -->
+            </div>
+            <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          </div>
+        </div>
+    </div>
+</section>
+
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    {% comment %} <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+       <div class="section-header">
+       </div>
+
+       <div class="row gy-4">
+       <div class="col-lg-7 position-relative about-img" style="background-image: url('https://img.freepik.com/free-vector/x9beautiful-hands-saving-blood-drop-card-design_1035-23347.jpg');  background-position: center; width:500px; height: 400px;" data-aos="fade-up" data-aos-delay="150">
+       </div>
+       <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+
+       <div class="content ps-0 ps-lg-5">
+           <h2>About Our Blood Donation Initiative
+
+           </h2>
+
+            <p class="fst-italic">
+
+
+              At Blood Donation Management System, we are committed to saving lives by connecting generous blood donors with patients in need. Our mission is to make blood donation easy and accessible, ensuring a stable supply of safe blood for medical treatments and emergencies.             </p>
+        </div>
+        
+       </div>
+      </div>
+
+
+        </div>
+    </section><!-- End About Section --> {% endcomment %}
+    <section id="about" class="contact">
+      <div class="container" data-aos="fade-up">
+  
+         <div class="section-header">
+          <br><br>
+          <h2>About us
+
+         </h2>
+         </div>
+         <ceneter>
+  
+          <div class="col-md-12">
+              <div class="info-item d-flex align-items-center">
+                <div>
+                  <h3>About Our Blood Donation Initiative
+
+                  </h3>
+                  <p>At Blood Donation Management System, we are committed to saving lives by connecting generous blood donors with patients in need. Our mission is to make blood donation easy and accessible, ensuring a stable supply of safe blood for medical treatments and emergencies.</p>
+                </div>
+             </div>
+            </div>&nbsp; &nbsp;&nbsp;
+  
+            <div class="col-md-12">
+              <div class="info-item  d-flex align-items-center">
+               <div>
+                  <h3>Our Vision
+
+                  </h3>
+                  <p>We envision a world where no one has to suffer due to a lack of blood. Through our online platform, we strive to create a community of caring individuals who are willing to contribute to the well-being of others.</p>
+               </div> 
+              </div>
+           </div>&nbsp; &nbsp;&nbsp;
+           <div class="col-md-12">
+                  <div class="info-item  d-flex align-items-center">
+                   <div>
+                      <h3>Why Choose Us?</h3>
+
+                      <p>Efficiency: We make the blood donation process as efficient as possible, connecting donors and recipients seamlessly.
+
+                      </p>
+                      <p> Safety: We prioritize safety and adhere to strict guidelines to ensure the well-being of both donors and recipients.
+                        
+                      </p>
+                      <p> Community: We're more than just a platform; we're a community of like-minded individuals who believe in the power of giving.
+                        
+                      </p> <p>Impact: Join us in making a significant impact on the lives of patients in need of blood.</p>
+                    </p>
+                  </div>
+                  </div>
+               </div>&nbsp; &nbsp;&nbsp;
+
+                 
+              </ceneter>
+
+          </div>
+      </section>
+    <!-- ======= Why Us Section ======= -->
+   <section id="registration" class="why-us section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="row justify-content-center"> <!-- Center align the content -->
+      <div class="col-lg-8 text-center">
+        <br><br>
+        <h2>Register Now</h2>
+        <p>Choose your role and get started</p>
+      </div>
+    </div>
+    <div class="row gy-4 justify-content-center"> <!-- Center align the icon boxes -->
+      <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+          <i class="fas fa-tint"></i>
+          <h4>Donor</h4>
+          <p>Register as Donor and Donate blood</p>
+
+          <a href="donor_registration" class="btn-book-a-table">Register</a>
+        </div>
+      </div>
+      <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+          <i class="fas fa-user-injured"></i>
+          <h4>Patient</h4>
+          <p>Register as Patient and request for blood</p>
+          <a href="/patient_registration" class="btn-book-a-table">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Why Us Section -->
+
+
+<!--    &lt;!&ndash; ======= Stats Counter Section ======= &ndash;&gt;-->
+<!--    <section id="stats-counter" class="stats-counter">-->
+<!--      <div class="container" data-aos="zoom-out">-->
+
+<!--        <div class="row gy-4">-->
+
+<!--          <div class="col-lg-3 col-md-6">-->
+<!--            <div class="stats-item text-center w-100 h-100">-->
+<!--              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>-->
+<!--              <p>Clients</p>-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Stats Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-3 col-md-6">-->
+<!--            <div class="stats-item text-center w-100 h-100">-->
+<!--              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>-->
+<!--              <p>Projects</p>-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Stats Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-3 col-md-6">-->
+<!--            <div class="stats-item text-center w-100 h-100">-->
+<!--              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>-->
+<!--              <p>Hours Of Support</p>-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Stats Item &ndash;&gt;-->
+
+<!--          <div class="col-lg-3 col-md-6">-->
+<!--            <div class="stats-item text-center w-100 h-100">-->
+<!--              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>-->
+<!--              <p>Workers</p>-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Stats Item &ndash;&gt;-->
+
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Stats Counter Section &ndash;&gt;-->
+
+<!--    &lt;!&ndash; ======= Menu Section ======= &ndash;&gt;-->
+<!--    <section id="menu" class="menu">-->
+<!--      <div class="container" data-aos="fade-up">-->
+
+<!--        <div class="section-header">-->
+<!--          <h2>Our Menu</h2>-->
+<!--          <p>Check Our <span>Yummy Menu</span></p>-->
+<!--        </div>-->
+
+<!--        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">-->
+
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">-->
+<!--              <h4>Starters</h4>-->
+<!--            </a>-->
+<!--          </li>&lt;!&ndash; End tab nav item &ndash;&gt;-->
+
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">-->
+<!--              <h4>Breakfast</h4>-->
+<!--            </a>&lt;!&ndash; End tab nav item &ndash;&gt;-->
+
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-lunch">-->
+<!--              <h4>Lunch</h4>-->
+<!--            </a>-->
+<!--          </li>&lt;!&ndash; End tab nav item &ndash;&gt;-->
+
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dinner">-->
+<!--              <h4>Dinner</h4>-->
+<!--            </a>-->
+<!--          </li>&lt;!&ndash; End tab nav item &ndash;&gt;-->
+
+<!--        </ul>-->
+
+<!--        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">-->
+
+<!--          <div class="tab-pane fade active show" id="menu-starters">-->
+
+<!--            <div class="tab-header text-center">-->
+<!--              <p>Menu</p>-->
+<!--              <h3>Starters</h3>-->
+<!--            </div>-->
+
+<!--            <div class="row gy-5">-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-1.png' %}" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Magnam Tiste</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $5.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-2.png' %}" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Aut Luia</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $14.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-3.png' %}" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Est Eligendi</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $8.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-4.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-4.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Eos Luibusdam</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $12.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-5.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-5.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Eos Luibusdam</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $12.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-6.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-6.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Laboriosam Direva</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $9.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Starter Menu Content &ndash;&gt;-->
+
+<!--          <div class="tab-pane fade" id="menu-breakfast">-->
+
+<!--            <div class="tab-header text-center">-->
+<!--              <p>Menu</p>-->
+<!--              <h3>Breakfast</h3>-->
+<!--            </div>-->
+
+<!--            <div class="row gy-5">-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-1.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-1.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Magnam Tiste</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $5.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-2.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-2.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Aut Luia</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $14.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-3.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-3.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Est Eligendi</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $8.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-4.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-4.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Eos Luibusdam</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $12.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-5.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-5.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Eos Luibusdam</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $12.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-6.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-6.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Laboriosam Direva</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $9.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Breakfast Menu Content &ndash;&gt;-->
+
+<!--          <div class="tab-pane fade" id="menu-lunch">-->
+
+<!--            <div class="tab-header text-center">-->
+<!--              <p>Menu</p>-->
+<!--              <h3>Lunch</h3>-->
+<!--            </div>-->
+
+<!--            <div class="row gy-5">-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-1.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-1.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Magnam Tiste</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $5.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-2.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-2.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Aut Luia</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $14.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-3.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-3.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Est Eligendi</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $8.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-4.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-4.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Eos Luibusdam</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $12.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-5.png' %}" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-5.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Eos Luibusdam</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $12.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="{% static 'assets/img/menu/menu-item-6.png' }" class="glightbox"><img src="{% static 'assets/img/menu/menu-item-6.png' %}" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Laboriosam Direva</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $9.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Lunch Menu Content &ndash;&gt;-->
+
+<!--          <div class="tab-pane fade" id="menu-dinner">-->
+
+<!--            <div class="tab-header text-center">-->
+<!--              <p>Menu</p>-->
+<!--              <h3>Dinner</h3>-->
+<!--            </div>-->
+
+<!--            <div class="row gy-5">-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Magnam Tiste</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $5.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Aut Luia</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $14.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Est Eligendi</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $8.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Eos Luibusdam</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $12.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Eos Luibusdam</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $12.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--              <div class="col-lg-4 menu-item">-->
+<!--                <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>-->
+<!--                <h4>Laboriosam Direva</h4>-->
+<!--                <p class="ingredients">-->
+<!--                  Lorem, deren, trataro, filede, nerada-->
+<!--                </p>-->
+<!--                <p class="price">-->
+<!--                  $9.95-->
+<!--                </p>-->
+<!--              </div>&lt;!&ndash; Menu Item &ndash;&gt;-->
+
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Dinner Menu Content &ndash;&gt;-->
+
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Menu Section &ndash;&gt;-->
+
+    <!-- ======= Testimonials Section ======= -->
+<!--    <section id="testimonials" class="testimonials section-bg">-->
+<!--      <div class="container" data-aos="fade-up">-->
+
+<!--        <div class="section-header">-->
+<!--          <h2>Testimonials</h2>-->
+<!--          <p>What Are They <span>Saying About Us</span></p>-->
+<!--        </div>-->
+
+<!--        <div class="slides-1 swiper" data-aos="fade-up" data-aos-delay="100">-->
+<!--          <div class="swiper-wrapper">-->
+
+<!--            <div class="swiper-slide">-->
+<!--              <div class="testimonial-item">-->
+<!--                <div class="row gy-4 justify-content-center">-->
+<!--                  <div class="col-lg-6">-->
+<!--                    <div class="testimonial-content">-->
+<!--                      <p>-->
+<!--                        <i class="bi bi-quote quote-icon-left"></i>-->
+<!--                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.-->
+<!--                        <i class="bi bi-quote quote-icon-right"></i>-->
+<!--                      </p>-->
+<!--                      <h3>Saul Goodman</h3>-->
+<!--                      <h4>Ceo &amp; Founder</h4>-->
+<!--                      <div class="stars">-->
+<!--                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-lg-2 text-center">-->
+<!--                    <img src="assets/img/testimonials/testimonials-1.jpg" class="img-fluid testimonial-img" alt="">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>&lt;!&ndash; End testimonial item &ndash;&gt;-->
+
+<!--            <div class="swiper-slide">-->
+<!--              <div class="testimonial-item">-->
+<!--                <div class="row gy-4 justify-content-center">-->
+<!--                  <div class="col-lg-6">-->
+<!--                    <div class="testimonial-content">-->
+<!--                      <p>-->
+<!--                        <i class="bi bi-quote quote-icon-left"></i>-->
+<!--                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.-->
+<!--                        <i class="bi bi-quote quote-icon-right"></i>-->
+<!--                      </p>-->
+<!--                      <h3>Sara Wilsson</h3>-->
+<!--                      <h4>Designer</h4>-->
+<!--                      <div class="stars">-->
+<!--                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-lg-2 text-center">-->
+<!--                    <img src="assets/img/testimonials/testimonials-2.jpg" class="img-fluid testimonial-img" alt="">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>&lt;!&ndash; End testimonial item &ndash;&gt;-->
+
+<!--            <div class="swiper-slide">-->
+<!--              <div class="testimonial-item">-->
+<!--                <div class="row gy-4 justify-content-center">-->
+<!--                  <div class="col-lg-6">-->
+<!--                    <div class="testimonial-content">-->
+<!--                      <p>-->
+<!--                        <i class="bi bi-quote quote-icon-left"></i>-->
+<!--                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.-->
+<!--                        <i class="bi bi-quote quote-icon-right"></i>-->
+<!--                      </p>-->
+<!--                      <h3>Jena Karlis</h3>-->
+<!--                      <h4>Store Owner</h4>-->
+<!--                      <div class="stars">-->
+<!--                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-lg-2 text-center">-->
+<!--                    <img src="assets/img/testimonials/testimonials-3.jpg" class="img-fluid testimonial-img" alt="">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>&lt;!&ndash; End testimonial item &ndash;&gt;-->
+
+<!--            <div class="swiper-slide">-->
+<!--              <div class="testimonial-item">-->
+<!--                <div class="row gy-4 justify-content-center">-->
+<!--                  <div class="col-lg-6">-->
+<!--                    <div class="testimonial-content">-->
+<!--                      <p>-->
+<!--                        <i class="bi bi-quote quote-icon-left"></i>-->
+<!--                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.-->
+<!--                        <i class="bi bi-quote quote-icon-right"></i>-->
+<!--                      </p>-->
+<!--                      <h3>John Larson</h3>-->
+<!--                      <h4>Entrepreneur</h4>-->
+<!--                      <div class="stars">-->
+<!--                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-lg-2 text-center">-->
+<!--                    <img src="assets/img/testimonials/testimonials-4.jpg" class="img-fluid testimonial-img" alt="">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>&lt;!&ndash; End testimonial item &ndash;&gt;-->
+
+<!--          </div>-->
+<!--          <div class="swiper-pagination"></div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Testimonials Section &ndash;&gt;-->
+
+<!--    &lt;!&ndash; ======= Events Section ======= &ndash;&gt;-->
+<!--    <section id="events" class="events">-->
+<!--      <div class="container-fluid" data-aos="fade-up">-->
+
+<!--        <div class="section-header">-->
+<!--          <h2>Events</h2>-->
+<!--          <p>Share <span>Your Moments</span> In Our Restaurant</p>-->
+<!--        </div>-->
+
+<!--        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">-->
+<!--          <div class="swiper-wrapper">-->
+
+<!--            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">-->
+<!--              <h3>Custom Parties</h3>-->
+<!--              <div class="price align-self-start">$99</div>-->
+<!--              <p class="description">-->
+<!--                Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum voluptas eos omnis facere. Enim facilis veritatis id est rem repudiandae nulla expedita quas.-->
+<!--              </p>-->
+<!--            </div>&lt;!&ndash; End Event item &ndash;&gt;-->
+
+<!--            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">-->
+<!--              <h3>Private Parties</h3>-->
+<!--              <div class="price align-self-start">$289</div>-->
+<!--              <p class="description">-->
+<!--                In delectus sint qui et enim. Et ab repudiandae inventore quaerat doloribus. Facere nemo vero est ut dolores ea assumenda et. Delectus saepe accusamus aspernatur.-->
+<!--              </p>-->
+<!--            </div>&lt;!&ndash; End Event item &ndash;&gt;-->
+
+<!--            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">-->
+<!--              <h3>Birthday Parties</h3>-->
+<!--              <div class="price align-self-start">$499</div>-->
+<!--              <p class="description">-->
+<!--                Laborum aperiam atque omnis minus omnis est qui assumenda quos. Quis id sit quibusdam. Esse quisquam ducimus officia ipsum ut quibusdam maxime. Non enim perspiciatis.-->
+<!--              </p>-->
+<!--            </div>&lt;!&ndash; End Event item &ndash;&gt;-->
+
+<!--          </div>-->
+<!--          <div class="swiper-pagination"></div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Events Section &ndash;&gt;-->
+
+<!--    &lt;!&ndash; ======= Chefs Section ======= &ndash;&gt;-->
+<!--    <section id="chefs" class="chefs section-bg">-->
+<!--      <div class="container" data-aos="fade-up">-->
+
+<!--        <div class="section-header">-->
+<!--          <h2>Chefs</h2>-->
+<!--          <p>Our <span>Proffesional</span> Chefs</p>-->
+<!--        </div>-->
+
+<!--        <div class="row gy-4">-->
+
+<!--          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">-->
+<!--            <div class="chef-member">-->
+<!--              <div class="member-img">-->
+<!--                <img src="assets/img/chefs/chefs-1.jpg" class="img-fluid" alt="">-->
+<!--                <div class="social">-->
+<!--                  <a href=""><i class="bi bi-twitter"></i></a>-->
+<!--                  <a href=""><i class="bi bi-facebook"></i></a>-->
+<!--                  <a href=""><i class="bi bi-instagram"></i></a>-->
+<!--                  <a href=""><i class="bi bi-linkedin"></i></a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="member-info">-->
+<!--                <h4>Walter White</h4>-->
+<!--                <span>Master Chef</span>-->
+<!--                <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Chefs Member &ndash;&gt;-->
+
+<!--          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">-->
+<!--            <div class="chef-member">-->
+<!--              <div class="member-img">-->
+<!--                <img src="assets/img/chefs/chefs-2.jpg" class="img-fluid" alt="">-->
+<!--                <div class="social">-->
+<!--                  <a href=""><i class="bi bi-twitter"></i></a>-->
+<!--                  <a href=""><i class="bi bi-facebook"></i></a>-->
+<!--                  <a href=""><i class="bi bi-instagram"></i></a>-->
+<!--                  <a href=""><i class="bi bi-linkedin"></i></a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="member-info">-->
+<!--                <h4>Sarah Jhonson</h4>-->
+<!--                <span>Patissier</span>-->
+<!--                <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Chefs Member &ndash;&gt;-->
+
+<!--          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">-->
+<!--            <div class="chef-member">-->
+<!--              <div class="member-img">-->
+<!--                <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">-->
+<!--                <div class="social">-->
+<!--                  <a href=""><i class="bi bi-twitter"></i></a>-->
+<!--                  <a href=""><i class="bi bi-facebook"></i></a>-->
+<!--                  <a href=""><i class="bi bi-instagram"></i></a>-->
+<!--                  <a href=""><i class="bi bi-linkedin"></i></a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="member-info">-->
+<!--                <h4>William Anderson</h4>-->
+<!--                <span>Cook</span>-->
+<!--                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Chefs Member &ndash;&gt;-->
+
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Chefs Section &ndash;&gt;-->
+
+<!--    &lt;!&ndash; ======= Book A Table Section ======= &ndash;&gt;-->
+<!--    <section id="book-a-table" class="book-a-table">-->
+<!--      <div class="container" data-aos="fade-up">-->
+
+<!--        <div class="section-header">-->
+<!--          <h2>Book A Table</h2>-->
+<!--          <p>Book <span>Your Stay</span> With Us</p>-->
+<!--        </div>-->
+
+<!--        <div class="row g-0">-->
+
+<!--          <div class="col-lg-4 reservation-img" style="background-image: url(assets/img/reservation.jpg);" data-aos="zoom-out" data-aos-delay="200"></div>-->
+
+<!--          <div class="col-lg-8 d-flex align-items-center reservation-form-bg">-->
+<!--            <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">-->
+<!--              <div class="row gy-4">-->
+<!--                <div class="col-lg-4 col-md-6">-->
+<!--                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">-->
+<!--                  <div class="validate"></div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6">-->
+<!--                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">-->
+<!--                  <div class="validate"></div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6">-->
+<!--                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">-->
+<!--                  <div class="validate"></div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6">-->
+<!--                  <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">-->
+<!--                  <div class="validate"></div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6">-->
+<!--                  <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">-->
+<!--                  <div class="validate"></div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6">-->
+<!--                  <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">-->
+<!--                  <div class="validate"></div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="form-group mt-3">-->
+<!--                <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>-->
+<!--                <div class="validate"></div>-->
+<!--              </div>-->
+<!--              <div class="mb-3">-->
+<!--                <div class="loading">Loading</div>-->
+<!--                <div class="error-message"></div>-->
+<!--                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>-->
+<!--              </div>-->
+<!--              <div class="text-center"><button type="submit">Book a Table</button></div>-->
+<!--            </form>-->
+<!--          </div>&lt;!&ndash; End Reservation Form &ndash;&gt;-->
+
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Book A Table Section &ndash;&gt;-->
+
+<!--    &lt;!&ndash; ======= Gallery Section ======= &ndash;&gt;-->
+<!--    <section id="gallery" class="gallery section-bg">-->
+<!--      <div class="container" data-aos="fade-up">-->
+
+<!--        <div class="section-header">-->
+<!--          <h2>gallery</h2>-->
+<!--          <p>Check <span>Our Gallery</span></p>-->
+<!--        </div>-->
+
+<!--        <div class="gallery-slider swiper">-->
+<!--          <div class="swiper-wrapper align-items-center">-->
+<!--            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>-->
+<!--            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>-->
+<!--            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>-->
+<!--            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>-->
+<!--            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>-->
+<!--            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>-->
+<!--            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>-->
+<!--            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>-->
+<!--          </div>-->
+<!--          <div class="swiper-pagination"></div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </section>&lt;!&ndash; End Gallery Section &ndash;&gt;-->
+
+<!--    &lt;!&ndash; ======= Contact Section ======= &ndash;&gt;-->
+   <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+       <div class="section-header">
+        <br><br>
+        <h2>Contact</h2>
+       <p>Need Help? <span>Contact Us</span></p>
+       </div>
+       <ceneter>
+
+        <div class="col-md-12">
+            <div class="info-item d-flex align-items-center">
+              <i class="icon bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>akshayasekharan14@gmail.com</p>
+              </div>
+           </div>
+          </div>&nbsp; &nbsp;&nbsp;
+
+          <div class="col-md-12">
+            <div class="info-item  d-flex align-items-center">
+              <i class="icon bi bi-telephone flex-shrink-0"></i>
+             <div>
+                <h3>Call Us</h3>
+                <p>+91 7736 2064 93</p>
+             </div> 
+            </div>
+         </div>
+        </div>
+      </ceneter>
+
+<!--          <div class="col-md-6">-->
+<!--            <div class="info-item  d-flex align-items-center">-->
+<!--              <i class="icon bi bi-share flex-shrink-0"></i>-->
+<!--              <div>-->
+<!--                <h3>Opening Hours</h3>-->
+<!--                <div><strong>Mon-Sat:</strong> 11AM - 23PM;-->
+<!--                  <strong>Sunday:</strong> Closed-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>&lt;!&ndash; End Info Item &ndash;&gt;-->
+
+<!--        </div>-->
+
+<!--        <form action="forms/contact.php" method="post" role="form" class="php-email-form p-3 p-md-4">-->
+<!--          <div class="row">-->
+<!--            <div class="col-xl-6 form-group">-->
+<!--              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>-->
+<!--            </div>-->
+<!--            <div class="col-xl-6 form-group">-->
+<!--              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>-->
+<!--          </div>-->
+<!--          <div class="my-3">-->
+<!--            <div class="loading">Loading</div>-->
+<!--            <div class="error-message"></div>-->
+<!--            <div class="sent-message">Your message has been sent. Thank you!</div>-->
+<!--          </div>-->
+<!--          <div class="text-center"><button type="submit">Send Message</button></div>-->
+<!--        </form>&lt;!&ndash;End Contact Form &ndash;&gt;-->
+
+<!--      </div>-->
+  </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+  <div class="container">
+    <div class="">
+      <i class="bi bi-gear icon"></i>
+      <div>
+          <h4>About Us</h4>
+          <p>
+              <strong>The Blood Donation Management System</strong> is a web-based platform dedicated to saving lives through efficient blood donation coordination. Our mission is to connect blood donors, patients, and hospitals, making it easy to find and donate blood when it's needed the most. At Blood Donation Management System, we believe in the power of community and the difference every individual can make. Join us in our mission to make blood donation accessible, convenient, and life-saving for all.
+          </p>
+      </div>
+  </div>
+      <div class="row">
+          {% comment %} <div class="col-lg-4 col-md-6">
+              <i class="bi bi-gear icon"></i>
+              <div>
+                  <h4>About Us</h4>
+                  <p>
+                      <strong>The Blood Donation Management System</strong> is a web-based platform dedicated to saving lives through efficient blood donation coordination. Our mission is to connect blood donors, patients, and hospitals, making it easy to find and donate blood when it's needed the most. At Blood Donation Management System, we believe in the power of community and the difference every individual can make. Join us in our mission to make blood donation accessible, convenient, and life-saving for all.
+                  </p>
+              </div>
+          </div> {% endcomment %}
+          <div class="col-lg-4 col-md-6">
+              <i class="bi bi-envelope icon"></i>
+              <div>
+                  <h4>Contact Us</h4>
+                  <p>
+                      <strong>Email:</strong> akshayasekharan@gmail.com<br>
+                      <strong>Phone:</strong> 773-620-6493
+                  </p>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+              <i class="bi bi-info-circle icon"></i>
+              <div>
+                  <h4>Disclaimer</h4>
+                  <p>
+                      <strong>Disclaimer:</strong> Blood Donation Management System is not a medical institution but a platform that connects donors and patients. Please consult a healthcare professional for any medical concerns.
+                  </p>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+              <i class="bi bi-link-45deg icon"></i>
+              <div>
+                  <h4>Quick Access</h4>
+                  <p>
+                      <a href="#hero">Home</a><br>
+                      <a href="{% url 'donor_registration' %}">Donor Registration</a><br>
+                      <a href="{% url 'patient_registration' %}">Patient Registration</a><br>
+                      <a id="hospital-registration-open" href="#">Hospital Registration</a>
+                    </p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="container">
+      <div class="copyright">
+          &copy; Copyright <strong>Blood Donation Management</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with a working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+      </div>
+  </div>
+</footer>
+
+<!-- Hospital Registration Pop-up -->
+<div id="hospital-registration-modal" class="modal">
+  <div class="modal-content">
+      <span class="close" id="hospital-registration-close">&times;</span>
+      <h2>Hospital Registration</h2>
+      <form id="hospital-registration-forms" method="POST" action="{% url 'temp_hospital_registration' %}">
+         {% csrf_token %}
+
+          <label for="hospital-phone">Phone:</label>
+          <input type="number" id="phone" name="hospital_phone" required pattern="[0-9]{10,12}" title="Please enter a valid phone number (10-12 digits)">
+
+          <label for="hospital-email">Email:</label>
+          <input type="email" id="" name="hospital_email" required>
+
+          <label for="hospital-description">Description:</label>
+          <textarea id="" name="hospital_description" required></textarea>
+
+          <button type="submit">Submit</button>
+      </form>
+
+  </div>
+</div>
+
+
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+<script>
+    const phone = document.getElementById('phone');
+    const phoneError = document.getElementById('phone-error');
+   
+    phone.addEventListener('input', () => {
+        const value = phone.value.trim();
+        if (!/^[0-9]{10,12}$/.test(value)) {
+            phone.setCustomValidity(''); 
+            phone.setCustomValidity('Please enter a valid phone number (10-12 digits)');
+            phoneError.textContent = 'Please enter a valid phone number (10-12 digits)';
+        } else {
+            phone.setCustomValidity('');
+            phoneError.textContent = '';
+        }
+    });
+    
+  // JavaScript for Hospital Registration Pop-up
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("hospital-registration-modal");
+  const openBtn = document.getElementById("hospital-registration-open");
+  const closeBtn = document.getElementById("hospital-registration-close");
+  const form = document.getElementById("hospital-registration-form");
+
+  openBtn.addEventListener("click", function() {
+      modal.style.display = "block";
+  });
+
+  closeBtn.addEventListener("click", function() {
+      modal.style.display = "none";
+  });
+
+      form.addEventListener("submit", function(e) {
+      e.preventDefault(); 
+
+      // Collect and display the form data (you can send it to the admin here)
+       {% comment %} const phone = document.getElementById("hospital-phone").value; {% endcomment %}
+      {% comment %} const email = document.getElementById("hospital-email").value; {% endcomment %}
+      {% comment %} const description = document.getElementById("hospital-description").value; {% endcomment %}
+
+      {% comment %} alert("Hospital Phone: " + phone + "\nHospital Email: " + email + "\nDescription: " + description); {% endcomment %} 
+
+      // Close the pop-up
+      modal.style.display = "none";
+  });
+});
+</script>
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

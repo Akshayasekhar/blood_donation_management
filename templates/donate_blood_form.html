@@ -1,0 +1,122 @@
+{% extends 'donor_base.html' %}
+
+{% block content %}
+<style>
+   
+    .contact .php-email-form {
+      width: 100%;
+      margin-top: 30px;
+      background: #fff;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+    }
+    
+    .contact .php-email-form .form-group {
+      padding-bottom: 20px;
+    }
+    
+    .contact .php-email-form .error-message {
+      display: none;
+      color: #fff;
+      background: #df1529;
+      text-align: left;
+      padding: 15px;
+      font-weight: 600;
+    }
+    
+    .contact .php-email-form .error-message br+br {
+      margin-top: 25px;
+    }
+    
+    .contact .php-email-form .sent-message {
+      display: none;
+      color: #fff;
+      background: #059652;
+      text-align: center;
+      padding: 15px;
+      font-weight: 600;
+    }
+    
+    .contact .php-email-form .loading {
+      display: none;
+      background: #fff;
+      text-align: center;
+      padding: 15px;
+    }
+    
+    .contact .php-email-form .loading:before {
+      content: "";
+      display: inline-block;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      margin: 0 10px -6px 0;
+      border: 3px solid #059652;
+      border-top-color: #fff;
+      animation: animate-loading 1s linear infinite;
+    }
+    
+    .contact .php-email-form input,
+    .contact .php-email-form textarea {
+      border-radius: 0;
+      box-shadow: none;
+      font-size: 14px;
+    }
+    
+    .contact .php-email-form input:focus,
+    .contact .php-email-form textarea:focus {
+      border-color: var(--color-primary);
+    }
+    
+    .contact .php-email-form input {
+      height: 48px;
+    }
+    
+    .contact .php-email-form textarea {
+      padding: 10px 12px;
+    }
+    
+    .contact .php-email-form button[type=submit] {
+      background: var(--color-primary);
+      border: 0;
+      padding: 12px 40px;
+      color: #fff;
+      transition: 0.4s;
+      border-radius: 50px;
+    }
+    
+    .contact .php-email-form button[type=submit]:hover {
+      background: #ec2727;
+    }
+</style>
+<div><br><br><br><br><br></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Donate Blood</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="donor_name">Donor Name:</label>
+                    <input type="text" id="donor_name" name="donor_name" class="form-control" value="{{ user.first_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="blood_type">Blood Type:</label>
+                    <input type="text" id="blood_type" name="blood_type" class="form-control" value="{{ blood_type }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="units_donated">Units Donated (between 350 and 450 milliliters):</label>
+                    <input type="number" id="units_donated" name="units_donated" class="form-control" required  min="350" max="450">
+                </div>
+                <div class="form-group">
+                    <label for="hospital_id"> Hospital:</label>
+                    
+                    <input type="text" id="hospital_id" name="hospital_id" class="form-control" value=" {{ hospital_name }}" readonly>
+                    
+                </div>
+                <button type="submit" class="btn btn-primary">Donate</button>
+            </form>
+        </div>
+    </div>
+    <br><br><br><br><br>
+</div>
+{% endblock %}

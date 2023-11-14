@@ -1,0 +1,31 @@
+<!-- approved_blood_view.html -->
+{% extends 'hospital_view.html' %}
+
+{% block content %}
+
+<div><br><br><br><br></div>
+<div class="container">
+    <h1>Approved Blood Requests</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Blood Type</th>
+                <th>Total Units</th>
+            </tr>
+        </thead>
+         <tbody>
+            {% for blood_unit in blood_units %}
+            <tr>
+                <td>{{ blood_unit.get_blood_type_display }}</td>
+                <td>{{ blood_unit.units }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No approved blood units available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'admin_view.html' %}
+{% load static %}
+
+{% block content %}
+
+<div><br><br></div>
+<div id="page-wrapper">
+
+    <div class="container">
+        <h1>Hospital Details</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Remove</th>
+
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for hospital in hospitals %}
+                <tr>
+                    <td>{{ hospital.user.first_name }}</td>
+                    <td>{{ hospital.user.email }}</td>
+
+                    <td>{{ hospital.phone }}</td>
+                    <td>{{ hospital.address }}</td>
+                    <td>{{ hospital.city }}</td>
+                    <td>
+                        <a href="{% url 'delete_hospital' hospital.id %}" class="btn btn-primary">Delete</a>
+                    </td>
+
+
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No Hospitals found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

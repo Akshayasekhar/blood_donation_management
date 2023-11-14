@@ -1,0 +1,140 @@
+{% extends 'donor_base.html' %}
+{% block content %}
+<!-- user_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+<style>
+.profile-info {
+    font-size: 18px;
+    color: #333;
+    margin: 5px;
+    /* Add more custom styles as needed */
+}
+.profile-container {
+            margin-top: 120px;
+            background-color: #fff; /* White background */
+            border: 1px solid #ccc; /* Add a border for styling */
+            border-radius: 10px; /* Add rounded corners */
+            padding: 30px; /* Add padding to the box */
+            max-width: 650px; /* Set a maximum width for the box */
+        }
+    profile-buttons:focus {
+    font-size: 14px;
+    color: #fff;
+    background: #ce1212;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+#edit-form {
+    text-align: center;
+}
+#profile-form {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    padding:35px;
+}
+#profile-form input[type="text"],
+#profile-form input[type="email"],
+#profile-form input[type="tel"],
+#profile-form textarea,
+#profile-form select {
+    padding: 15x; 
+    border-radius: 6px;
+    width:400px;
+    border-color: rgba(0,0,0,.5);
+}
+#profile-form input[type="textarea"]{
+    padding: 5px;
+    
+}
+#profile-form input[type="submit"] {
+    background-color: #ce1212;
+    color: #fff;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+}
+#profile-form input[type="submit"]:hover {
+    background-color: #ff0000;
+}
+</style>
+
+
+</head>
+<body>
+<div class="content">
+   <center> <div class="profile-container">
+    <h1>Donor  Profile</h1>
+    <div id="edit-form">
+        <form id="profile-form" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            {% csrf_token %}
+           <table>
+            <tr><td><p><strong>First Name:</strong> </td><td><input type="text" name="first_name" id="first_name" value="{{ user_data.first_name }}" required></p></td></tr>
+            <td><p><strong>Last Name:</strong> </td><td><input type="text" name="last_name" id="last_name" value="{{ user_data.last_name }}"></p></td></tr>
+            <tr><td><p><strong>Image:</strong> </td><td>{% if custom_registration_data.image %}
+                <img src="{{ custom_registration_data.image.url }}" alt="User Image" style="max-width: 100px; max-height: 100px;">
+            {% endif %}
+            <input type="file" name="image" id="image"></p></td></tr>
+
+            <tr><td><p><strong>Email:</strong> </td><td><input type="email" id="email" name="email" value="{{ user_data.email }}" required></p></td></tr>
+            <tr><td><p><strong>User Name:</strong></td><td> <input type="text" name="username" id="username" value="{{ user_data.username }}" required></p></td></tr>
+            <tr><td><p><strong>Phone:</strong> </td><td><input type="tel" name="phone" id="phone-edit" value="{{ custom_registration_data.phone }}" required pattern="^\+91[0-9]{10,12}"></p>                     
+                {% comment %} <p id="phone-error" class="error-message"></p> {% endcomment %}
+            </td></tr>
+            <tr><td><p><strong>Address:</strong> </td><td><textarea name="address" id="address-edit" rows="3" cols="15" value="{{ custom_registration_data.address }}" required>{{ custom_registration_data.address }}</textarea></p></td></tr>
+            <tr><td><p><strong>City:</strong> </td><td><input type="text" name="city" id="city-edit" value="{{ custom_registration_data.city }}"></p></td></tr>
+            <tr><td>  <br>  <p><strong>Blood Type:</strong> </td>
+                <td><select class="form-control" id="bloodType" name="bloodType" required>
+                    <option value="{{ custom_registration_data.blood_type }}">{{ custom_registration_data.blood_type }}</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </td>
+               </p>
+            </tr>
+            </table>
+            <tr>
+                {% if error_message %}
+                           <p class="error-message">{{ error_message }}</p>
+                        {% endif %}
+                        <center>
+                <input type="submit" value="Save changes">
+                        </center>
+                </tr>
+        </form>
+    </div>
+   </center>
+   <br><br><br>
+</div>
+<script>
+    const phone = document.getElementById('phone-edit');
+    const phoneError = document.getElementById('phone-error');
+    
+    phone.addEventListener('input', () => {
+        const value = phone.value.trim();
+        if (!/^+91[0-9]{10,12}$/.test(value)) {
+            phone.setCustomValidity(''); 
+            phone.setCustomValidity('Please enter a valid phone number (10-12 digits)');
+            phoneError.textContent = 'Please enter a valid phone number (10-12 digits)';
+        } else {
+            phone.setCustomValidity('');
+            phoneError.textContent = '';
+        }
+    });
+</script>
+</body>
+</html>
+
+{% endblock %}

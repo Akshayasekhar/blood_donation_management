@@ -1,0 +1,128 @@
+{% extends 'hospital_view.html' %}
+{% block content %}
+<!-- user_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hospital Profile</title>
+<style>
+    .profile-container {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 5px;
+        max-width: 800px;
+        text-align: center;
+        margin-top: 95px;
+    }
+
+    /* Header styles */
+    h1 {
+        color: #ce1212;
+    }
+
+    /* Form styles */
+    #profile-form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    #profile-form input[type="text"],
+    #profile-form input[type="email"],
+    #profile-form input[type="tel"],
+    #profile-form textarea {
+        width: 500px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+
+    #profile-form input[type="submit"] {
+        background-color: #ce1212;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 20px;
+    }
+
+    #profile-form input[type="submit"]:hover {
+        background-color: #ff0000;
+    }
+
+</style>
+
+
+</head>
+<body>
+<div class="">
+   <center> <div class="profile-container">
+    <br><br><br>
+    <h1>Hospital Profile</h1>
+    <div id="edit-form">
+        <form id="profile-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <center>
+           <table>
+            <tr><td><p><strong> Name:</strong> </td><td>&nbsp;&nbsp;<input type="text" name="first_name" id="first_name" value="{{ user_data.first_name }}" required></p></td></tr>
+            <tr><td><p><strong>Email:</strong> </td><td>&nbsp;&nbsp;<input type="email" id="email" name="email" value="{{ user_data.email }}" required></p></td></tr>
+            <tr><td><p><strong>Image:</strong> </td><td>{% if custom_registration_data.image %}
+                <img src="{{ custom_registration_data.image.url }}" alt="User Image" style="max-width: 100px; max-height: 100px;">
+            {% endif %}
+            <input type="file" name="image" id="image"></p></td></tr>
+
+            <tr><td><p><strong>User Name:</strong></td><td>&nbsp;&nbsp; <input type="text" name="username" id="username" value="{{ user_data.username }}" required></p></td></tr>
+            <tr><td><p><strong>Phone:</strong> </td><td>&nbsp;&nbsp;
+                <div class="input-group">
+                    {% comment %} <div class="input-group-prepend">
+                        <span class="input-group-text">+91</span>
+                    </div> {% endcomment %}
+                  <input type="tel" name="phone" id="phone-edit" value="{{ custom_registration_data.phone }}" required pattern="^\[0-9]{10,12}$"></p>                     
+                </div>
+            </td></tr>
+            <tr><td><p><strong>Address:</strong> </td><td>&nbsp;&nbsp;<textarea name="address" id="address-edit" row="5" col="10" value="{{ custom_registration_data.address }}" required>{{ custom_registration_data.address }}</textarea></p></td></tr>
+            <tr><td><p><strong>City:</strong> </td><td>&nbsp;&nbsp;<input type="text" name="city" id="city-edit" value="{{ city_name }}" required>
+                {{ city_filter_form.city }} 
+            </p></td></tr>
+                
+                    
+                <br>
+            </td>
+               </p>
+            </tr>
+            </table>
+        </center>
+        <tr>
+            {% if error_message %}
+                       <p class="error-message">{{ error_message }}</p>
+                    {% endif %}
+            </tr>
+            <tr>
+                <center><input type="submit" value="Save changes"></center>
+                </tr>
+        </form>
+    </div>
+   </center>
+</div>
+<script>
+    const phone = document.getElementById('phone-edit');
+    const phoneError = document.getElementById('phone-error');
+    
+    phone.addEventListener('input', () => {
+        const value = phone.value.trim();
+        if (!/^[0-9]{10,12}$/.test(value)) {
+            phone.setCustomValidity(''); 
+            phone.setCustomValidity('Please enter a valid phone number (10-12 digits)');
+            phoneError.textContent = 'Please enter a valid phone number (10-12 digits)';
+        } else {
+            phone.setCustomValidity('');
+            phoneError.textContent = '';
+        }
+    });
+</script>
+</body>
+</html>
+
+{% endblock %}
