@@ -96,17 +96,26 @@ WSGI_APPLICATION = 'blood_donation.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'blood_donation',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '3308',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blood_donation',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3308',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'blood_donation', 
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost', 
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
